@@ -5,7 +5,7 @@ from openai import OpenAI
 from PIL import Image, ImageOps
 from torchvision.transforms import ToPILImage
 
-class vlmnode:
+class tagger_node:
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -50,3 +50,7 @@ class vlmnode:
         )
         caption = response.choices[0].message.content 
         return caption
+    
+NODE_CLASS_MAPPINGS = {
+    "Image Tagger" : tagger_node,
+}

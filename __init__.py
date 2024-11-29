@@ -1,7 +1,3 @@
-from .tagger import vlmnode
-
-NODE_CLASS_MAPPINGS = {
-    "GPT4o Tagger" : vlmnode,
-}
+from .tagger import NODE_CLASS_MAPPINGS
 
 __all__ = ['NODE_CLASS_MAPPINGS']
