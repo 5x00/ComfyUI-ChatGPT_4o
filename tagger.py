@@ -25,6 +25,7 @@ class tagger_node:
 
     def create_caption(self, API_Key, Image, Prompt):
 
+        print("Generating caption for the image...")
         # Initialize OpenAI client
         client = OpenAI(api_key=API_Key)
 
@@ -52,6 +53,7 @@ class tagger_node:
             ],
         )
         caption = response.choices[0].message.content 
+        print(f"Caption generated: {caption}")
         return caption
     
 NODE_CLASS_MAPPINGS = {
