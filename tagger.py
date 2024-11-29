@@ -5,7 +5,7 @@ from openai import OpenAI
 from PIL import Image, ImageOps
 from torchvision.transforms import ToPILImage
 
-class GPT4oNode:
+class vlmnode:
     @classmethod
     def INPUT_TYPES(cls):
         return {
