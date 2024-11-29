@@ -1,4 +1,4 @@
-# ComfyUI-ChatGPT_4o
+# ComfyUI-VLM-Captions
 A simple ComfyUI node that let's you use ChatGPT 4o's VLM capabilities to generate captions/tags for images. 
 
 
