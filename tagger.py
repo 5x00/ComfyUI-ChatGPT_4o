@@ -1,11 +1,5 @@
-from io import BytesIO
-import os
-import base64
-from openai import OpenAI
-import PIL
-import torch
 import numpy as np
-from .utils import tensor_to_image 
+import utils
 
 class tagger_node:
     RETURN_TYPES = ("STRING",)
@@ -17,42 +11,20 @@ class tagger_node:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                 "Image" : ("IMAGE", {}), 
-                 "Prompt" : ("STRING", {}),
-                 "API_Key" : ("STRING", {}),
+                "Image" : ("IMAGE", {}), 
+                "Prompt" : ("STRING", {"multiline": True, "default": "Describe the image."}),
+                "API_Key" : ("STRING", {}),
+                "Service" : (["OpenAI", "Claude"],),
             },
         }
 
-    def create_caption(self, API_Key, Image, Prompt):
-
+    def create_caption(self, Image, Prompt, API_Key, Service):
         print("Generating caption for the image...")
-        # Initialize OpenAI client
-        client = OpenAI(api_key=API_Key)
-
-        # Convert and resize image
-        pil_image = tensor_to_image(Image)
-        max_dimension = 512
-        pil_image.thumbnail((max_dimension, max_dimension))
-        buffer = BytesIO()
-        pil_image.save(buffer, format="JPEG")
-        buffer.seek(0) 
-        base64_image = base64.b64encode(buffer.getvalue()).decode("utf-8")
-        buffer.close()
-
-        # ChatGPT completions
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": Prompt},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
-                    ],
-                }
-            ],
-        )
-        caption = response.choices[0].message.content 
+        caption = ""
+        if Service == "OpenAI":
+            caption = utils.gen_openai(API_Key, Image, Prompt)
+        if Service == "Claude":
+            caption = utils.gen_claude(API_Key, Image, Prompt)
         print(f"Caption generated: {caption}")
         return caption
     

@@ -3,3 +3,4 @@ pillow
 torchvision
 numpy
 torch
+anthropic
