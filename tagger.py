@@ -7,7 +7,7 @@ from torchvision.transforms import ToPILImage
 
 class tagger_node:
     RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("Caption")
+    RETURN_NAMES = ("Caption",)
     FUNCTION = "create_caption"
     CATEGORY = "5x00/GPT4o"
 
@@ -17,14 +17,14 @@ class tagger_node:
             "required": {
                  "Image" : ("IMAGE", {}), 
                  "Prompt" : ("STRING", {}),
-                 "API_Key_Key" : ("STRING", {}),
+                 "API_Key" : ("STRING", {}),
             },
         }
 
     def create_caption(self, API_Key, Image, Prompt):
 
         # Initialize OpenAI client
-        client = OpenAI(API_Key_key=API_Key)
+        client = OpenAI(api_key=API_Key)
 
         # Convert and resize image
         transform = ToPILImage()
