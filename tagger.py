@@ -5,6 +5,7 @@ from openai import OpenAI
 import PIL
 import torch
 import numpy as np
+from .utils import tensor_to_image 
 
 class tagger_node:
     RETURN_TYPES = ("STRING",)
