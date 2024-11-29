@@ -6,27 +6,29 @@ from PIL import Image, ImageOps
 from torchvision.transforms import ToPILImage
 
 class tagger_node:
+    RETURN_TYPES = ("STRING",)
+    RETURN_NAMES = ("Caption")
+    FUNCTION = "create_caption"
+    CATEGORY = "5x00/GPT4o"
+
     @classmethod
     def INPUT_TYPES(cls):
         return {
-            "required": { "image_in" : ("IMAGE", {}) },
-            "required": { "prompt_in" : ("STRING", {}) },
-            "required": { "api" : ("STRING", {}) },
+            "required": {
+                 "Image" : ("IMAGE", {}), 
+                 "Prompt" : ("STRING", {}),
+                 "API_Key_Key" : ("STRING", {}),
+            },
         }
 
-    RETURN_TYPES = ("STRING")
-    RETURN_NAMES = ("text_out",)
-    CATEGORY = "5x00/GPT4o"
-    FUNCTION = "create_caption"
-
-    def create_caption(self, api, image_in, prompt_in):
+    def create_caption(self, API_Key, Image, Prompt):
 
         # Initialize OpenAI client
-        client = OpenAI(api_key=api)
+        client = OpenAI(API_Key_key=API_Key)
 
         # Convert and resize image
         transform = ToPILImage()
-        pil_image = transform(image_in.squeeze(0))
+        pil_image = transform(Image.squeeze(0))
         max_dimension = 512
         pil_image.thumbnail((max_dimension, max_dimension))
         buffer = BytesIO()
@@ -42,7 +44,7 @@ class tagger_node:
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt_in},
+                        {"type": "text", "text": Prompt},
                         {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
                     ],
                 }
