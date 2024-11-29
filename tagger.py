@@ -28,7 +28,7 @@ class tagger_node:
 
         # Convert and resize image
         transform = ToPILImage()
-        pil_image = transform(Image.squeeze(0))
+        pil_image = transform(Image.unsqueeze(0))
         max_dimension = 512
         pil_image.thumbnail((max_dimension, max_dimension))
         buffer = BytesIO()
