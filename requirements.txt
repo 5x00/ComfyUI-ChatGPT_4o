@@ -1,3 +1,5 @@
 openai
 pillow
 torchvision
+numpy
+torch

@@ -3,7 +3,8 @@ import os
 import base64
 from openai import OpenAI
 from PIL import Image, ImageOps
-from torchvision.transforms import ToPILImage
+import torch
+import numpy as np
 
 class tagger_node:
     RETURN_TYPES = ("STRING",)
@@ -27,9 +28,12 @@ class tagger_node:
         client = OpenAI(api_key=API_Key)
 
         # Convert and resize image
-        tensor = Image
-        transform = ToPILImage()
-        pil_image = transform(tensor.squeeze(0))
+        Image = ImageOps.exif_transpose(Image)
+        if Image.mode == 'I':
+            i = i.point(lambda i: i * (1 / 255))
+        pil_image = i.convert("RGB")
+        pil_image = np.array(pil_image).astype(np.float32) / 255.0
+        pil_image = torch.from_numpy(pil_image)[None,]
         max_dimension = 512
         pil_image.thumbnail((max_dimension, max_dimension))
         buffer = BytesIO()
