@@ -27,8 +27,9 @@ class tagger_node:
         client = OpenAI(api_key=API_Key)
 
         # Convert and resize image
+        tensor = Image
         transform = ToPILImage()
-        pil_image = transform(Image.unsqueeze(0))
+        pil_image = transform(tensor.squeeze(0))
         max_dimension = 512
         pil_image.thumbnail((max_dimension, max_dimension))
         buffer = BytesIO()
