@@ -11,6 +11,7 @@ class tagger_node:
     def IS_CHANGED(cls, **kwargs):
         return float("NaN")
     
+    @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
