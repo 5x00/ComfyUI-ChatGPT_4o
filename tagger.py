@@ -30,7 +30,7 @@ class tagger_node:
         if Service == "Claude":
             caption = gen_claude(API_Key, Image, Prompt)
         print(f"Caption generated: {caption}")
-        return caption
+        return (caption,)
     
 NODE_CLASS_MAPPINGS = {
     "Image To Caption" : tagger_node,
