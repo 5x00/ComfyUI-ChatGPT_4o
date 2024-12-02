@@ -1,3 +1,5 @@
+### Please note that the project is still WIP and may not work as expected for now.
+
 # ComfyUI-VLM-Captions
 A simple ComfyUI node that let's you use Claude or ChatGPT 4o's VLM capabilities to generate captions/tags for images. 
 
