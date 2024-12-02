@@ -12,5 +12,5 @@ The node accepts an image and a prompt as inputs to generate captions. The input
 
 ## Workflow Example
 ![image](https://github.com/user-attachments/assets/6a2b5411-a576-4faa-82a8-bf0d571dea2b)
-
+** Right click > Convert widget to input to convert conditioning text box into a node input
 
