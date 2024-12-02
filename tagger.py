@@ -8,6 +8,9 @@ class tagger_node:
     CATEGORY = "5x00/GPT4o"
 
     @classmethod
+    def IS_CHANGED(cls, **kwargs):
+        return float("NaN")
+    
     def INPUT_TYPES(cls):
         return {
             "required": {
@@ -29,5 +32,5 @@ class tagger_node:
         return caption
     
 NODE_CLASS_MAPPINGS = {
-    "Image Tagger" : tagger_node,
+    "Image To Caption" : tagger_node,
 }
