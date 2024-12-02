@@ -1,5 +1,5 @@
 import numpy as np
-import utils
+from .utils import gen_claude, gen_openai
 
 class tagger_node:
     RETURN_TYPES = ("STRING",)
@@ -26,9 +26,9 @@ class tagger_node:
         print("Generating caption for the image...")
         caption = ""
         if Service == "OpenAI":
-            caption = utils.gen_openai(API_Key, Image, Prompt)
+            caption = gen_openai(API_Key, Image, Prompt)
         if Service == "Claude":
-            caption = utils.gen_claude(API_Key, Image, Prompt)
+            caption = gen_claude(API_Key, Image, Prompt)
         print(f"Caption generated: {caption}")
         return caption
     
