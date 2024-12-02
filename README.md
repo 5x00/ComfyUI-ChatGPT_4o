@@ -3,7 +3,6 @@ A simple ComfyUI node that let's you use Claude or ChatGPT 4o's VLM capabilities
 
 
 ## Installation
-- [Recommended] Install via ComfyUI Manager
 - git clone this repository into Comfyui/custom_nodes/
 
 
