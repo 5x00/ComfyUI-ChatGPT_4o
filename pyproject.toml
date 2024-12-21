@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-vlm_captions"
+description = "A simple ComfyUI node that let's you use Claude or ChatGPT 4o's VLM capabilities to generate captions/tags for images."
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["openai", "pillow", "torchvision", "numpy", "torch", "anthropic"]
+
+[project.urls]
+Repository = "https://github.com/5x00/ComfyUI-VLM_Captions"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-VLM_Captions"
+Icon = ""
