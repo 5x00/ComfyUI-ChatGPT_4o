@@ -5,7 +5,7 @@ class tagger_node:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("Caption",)
     FUNCTION = "create_caption"
-    CATEGORY = "5x00/GPT4o"
+    CATEGORY = "5x00"
 
     @classmethod
     def IS_CHANGED(cls, **kwargs):
